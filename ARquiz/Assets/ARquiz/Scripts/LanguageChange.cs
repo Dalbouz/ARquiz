@@ -21,6 +21,10 @@ public class LanguageChange : MonoBehaviour
         OnLanguageChange();
     }
 
+    private void OnDestroy()
+    {
+        UIManager.Instance.onLanguageChange -= OnLanguageChange;
+    }
     private void OnLanguageChange()
     {
         if(UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.CROATIAN)
