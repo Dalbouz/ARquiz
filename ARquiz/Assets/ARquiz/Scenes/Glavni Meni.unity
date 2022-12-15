@@ -178,6 +178,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 72514125}
   SettingsPanel: {fileID: 1554244011}
+  ButtonsToDisable:
+  - {fileID: 1904092821}
+  - {fileID: 607435999}
+  - {fileID: 1355964378}
+  - {fileID: 1645636981}
 --- !u!114 &72514125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +629,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 607435999}
   SettingsPanel: {fileID: 1554244011}
+  ButtonsToDisable:
+  - {fileID: 1904092821}
+  - {fileID: 607435999}
+  - {fileID: 1355964378}
+  - {fileID: 1645636981}
 --- !u!1 &610848134
 GameObject:
   m_ObjectHideFlags: 0
