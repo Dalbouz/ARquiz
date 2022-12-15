@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class OpenCloseSettings : ButtonClick
 {
     public GameObject SettingsPanel;
-    public List<Button> ButtonsToDisable;
+    public List<Button> ButtonsToEnable_Disable;
 
     public override void Click()
     {
         if (SettingsPanel.activeSelf == false)
         {
-            foreach (Button button in ButtonsToDisable)
+            foreach (Button button in ButtonsToEnable_Disable)
             {
                 button.interactable = false;
             }
@@ -20,7 +20,7 @@ public class OpenCloseSettings : ButtonClick
         }
         else
         {
-            foreach (Button button in ButtonsToDisable)
+            foreach (Button button in ButtonsToEnable_Disable)
             {
                 button.interactable = true;
             }
