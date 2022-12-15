@@ -1,18 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class InfoButton : MonoBehaviour
+using UnityEngine.SceneManagement;
+public class InfoButton : ButtonClick
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Click()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene("Info");
     }
 }

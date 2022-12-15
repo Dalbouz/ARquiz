@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ARButton : MonoBehaviour
+public class ARButton : ButtonClick
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Click()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene("AR");
     }
 }
