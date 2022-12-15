@@ -2,32 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LanguageChange : MonoBehaviour
 {
 
     public string Croatian;
     public string English;
-    private Text text;
-
+    private TextMeshProUGUI _tmpText;
     private void Awake()
     {
-        text = GetComponent<Text>();
+        _tmpText = GetComponent<TextMeshProUGUI>();
+    
     }
-    private void OnEnable()
+    private void Start()
     {
         UIManager.Instance.onLanguageChange += OnLanguageChange;
+        OnLanguageChange();
     }
 
     private void OnLanguageChange()
     {
         if(UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.CROATIAN)
         {
-            text.text = Croatian;
+            _tmpText.text = Croatian;
         }
         else if(UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.ENGLISH)
         {
-            text.text = English;
+            _tmpText.text = English;
         }
     }
 }
