@@ -28,7 +28,6 @@ public class QuizManager : MonoBehaviour
     private int _waitBeforeLoadMM;
     [SerializeField]
     private List<Button> ButtonsToDisable;
-    private ShuffleChilderObj shuffleAnswers;
 
     private void Awake()
     {
