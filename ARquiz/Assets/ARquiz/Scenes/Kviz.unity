@@ -295,6 +295,11 @@ MonoBehaviour:
   CurrentActiveTemp: {fileID: 0}
   CorrectAnswered: 0
   CurrentActiveIndex: 0
+  ScoreBoard: {fileID: 1210035237}
+  _waitBeforeLoadMM: 5
+  ButtonsToDisable:
+  - {fileID: 498734504}
+  - {fileID: 2030354453}
 --- !u!4 &533437964
 Transform:
   m_ObjectHideFlags: 0
@@ -706,14 +711,14 @@ GameObject:
   - component: {fileID: 1210035238}
   - component: {fileID: 1210035241}
   - component: {fileID: 1210035240}
-  - component: {fileID: 1210035239}
+  - component: {fileID: 1210035242}
   m_Layer: 5
   m_Name: Score Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1210035238
 RectTransform:
   m_ObjectHideFlags: 0
@@ -732,23 +737,8 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 422.3519, y: 214.5981}
+  m_SizeDelta: {x: 720, y: 214.5981}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1210035239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210035237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Croatian: 
-  English: 
-  _tmpText: {fileID: 0}
 --- !u!114 &1210035240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,6 +836,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210035237}
   m_CullTransparentMesh: 1
+--- !u!114 &1210035242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210035237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9023178f5ae7243ab92bdc0d1f146f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Croatian: "Broj To\u010Dnih Odgovora:"
+  English: 'Number of Correct Answers:'
 --- !u!1 &1221849651
 GameObject:
   m_ObjectHideFlags: 0
