@@ -9,7 +9,7 @@ public abstract class LanguageChange : MonoBehaviour
 
     public string Croatian;
     public string English;
-    private TextMeshProUGUI _tmpText;
+    protected TextMeshProUGUI _tmpText;
     private void Awake()
     {
         _tmpText = GetComponent<TextMeshProUGUI>();

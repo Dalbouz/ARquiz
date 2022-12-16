@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class QuizManager : MonoBehaviour
 {
@@ -20,6 +22,12 @@ public class QuizManager : MonoBehaviour
     public int CorrectAnswered = 0;
     [SerializeField]
     private int CurrentActiveIndex = 0;
+    public GameObject ScoreBoard;
+    [SerializeField]
+    private int _waitBeforeLoadMM;
+    [SerializeField]
+    private List<Button> ButtonsToDisable;
+    private ShuffleChilderObj shuffleAnswers;
 
     private void Awake()
     {
@@ -37,20 +45,21 @@ public class QuizManager : MonoBehaviour
             QATemp QATemp = newQA.GetComponent<QATemp>();
             QATemp.Questions.Croatian = questionAnser.QuestionCro;
             QATemp.Questions.English = questionAnser.QuestionEng;
+            QATemp.ShuffleAnswers.Shuffle();
             for (int i = 0; i < QATemp.Ansers.Count; i++)
             {
-                QATemp.Ansers[i].text = i+1 + "." + questionAnser.Ansers[i];
+                QATemp.Ansers[i].text = i + 1 +"." + questionAnser.Ansers[i];
             }
             QATemp.CorrectAnser = questionAnser.CorrectAnswer;
             newQA.SetActive(false);
         }
-
+        GameObject temp;
         for (int i = 0; i < Questions.Count; i++)
         {
-            GameObject temp = Questions[i];
+            temp = Questions[i];
             int RandomIndex = Random.Range(i, Questions.Count);
             Questions[i] = Questions[RandomIndex];
-            Questions[RandomIndex] = temp; 
+            Questions[RandomIndex] = temp;
         }
         Questions[CurrentActiveIndex].SetActive(true);
         CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
@@ -61,14 +70,24 @@ public class QuizManager : MonoBehaviour
         Questions[CurrentActiveIndex].SetActive(false);
         if(CurrentActiveIndex >= Questions.Count-1)
         {
-            Debug.Log("Summary Screen" + "tocan broj odgovora" + CorrectAnswered );
-            //otvori summary Screen
-            CorrectAnswered = 0;
-            CurrentActiveIndex = 0;
+            foreach (Button button in ButtonsToDisable)
+            {
+                button.interactable = false;
+            }
+            StartCoroutine(WaitAndLoadMM());
             return;
         }
         CurrentActiveIndex++;
         CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
         Questions[CurrentActiveIndex].SetActive(true);
+    }
+
+    private IEnumerator WaitAndLoadMM()
+    {
+        ScoreBoard.SetActive(true);
+        yield return new WaitForSeconds(_waitBeforeLoadMM);
+        CorrectAnswered = 0;
+        CurrentActiveIndex = 0;
+        SceneManager.LoadScene("Glavni Meni");
     }
 }

@@ -7,5 +7,6 @@ public class QATemp : MonoBehaviour
 {
     public LanguageChange Questions;
     public List<TextMeshProUGUI> Ansers;
-    public int CorrectAnser; 
+    public int CorrectAnser;
+    public ShuffleChilderObj ShuffleAnswers;
 }
