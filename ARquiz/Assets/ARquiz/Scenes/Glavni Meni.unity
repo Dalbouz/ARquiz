@@ -728,7 +728,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 850702581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a659c88b84ede743a65a97246d1b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Croatian: Informacije
@@ -878,11 +878,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 856720310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a659c88b84ede743a65a97246d1b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Croatian: "Pro\u0161irena Stvarnost"
-  English: Augmented Reality
+  English: Agumented Reality
 --- !u!1 &995976404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1146520343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a659c88b84ede743a65a97246d1b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Croatian: Glavni Meni
@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1972910824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a659c88b84ede743a65a97246d1b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Croatian: Postavke
@@ -2179,7 +2179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2011840698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a659c88b84ede743a65a97246d1b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Croatian: Kviz

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class LanguageChange : MonoBehaviour
+public abstract class LanguageChange : MonoBehaviour
 {
 
     public string Croatian;
@@ -25,7 +25,7 @@ public class LanguageChange : MonoBehaviour
     {
         UIManager.Instance.onLanguageChange -= OnLanguageChange;
     }
-    private void OnLanguageChange()
+    public virtual void OnLanguageChange()
     {
         if(UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.CROATIAN)
         {

@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 409191243656091892}
   - component: {fileID: 2549999722032772086}
   - component: {fileID: 8193307815126767926}
-  - component: {fileID: 8609863657091377294}
+  - component: {fileID: 5383085381926160708}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8609863657091377294
+--- !u!114 &5383085381926160708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2703486563294367272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a659c88b84ede743a65a97246d1b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Croatian: Natrag
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 4945441792986231798}
   - component: {fileID: 4945441792986231795}
   - component: {fileID: 4945441792986231796}
-  - component: {fileID: 4945441792986231797}
+  - component: {fileID: 1760234326118525835}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4945441792986231797
+--- !u!114 &1760234326118525835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4945441792986231799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a659c88b84ede743a65a97246d1b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Croatian: ENG
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 4945441793369279681}
   - component: {fileID: 4945441793369279695}
   - component: {fileID: 4945441793369279680}
-  - component: {fileID: 4945441793369279694}
+  - component: {fileID: 48828896976772702}
   m_Layer: 5
   m_Name: Change Language
   m_TagString: Untagged
@@ -918,7 +918,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4945441793369279694
+--- !u!114 &48828896976772702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -927,8 +927,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4945441793369279682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67f836958e6b4e409681699e6f58878, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a659c88b84ede743a65a97246d1b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Croatian: 'Promijeni Jezik u:'
-  English: 'Change Language To:'
+  Croatian: 'Promjeni Jezik u:'
+  English: 'Change Language to:'
