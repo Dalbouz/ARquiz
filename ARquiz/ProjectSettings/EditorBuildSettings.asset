@@ -4,7 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/ARquiz/Scenes/Glavni Meni.unity
+    guid: 9a8d29f81895f794a90ebb1ee5e74009
+  - enabled: 1
+    path: Assets/ARquiz/Scenes/AR.unity
+    guid: bf9fb990360bf9d48b9b8352cc84aa74
+  - enabled: 1
+    path: Assets/ARquiz/Scenes/Info.unity
+    guid: 91a74087300737840a02b4ecfdcb1a6e
+  - enabled: 1
+    path: Assets/ARquiz/Scenes/Kviz.unity
+    guid: a8d66d89423d00f4ab11dea3b88867af
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
