@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class QuizManager : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class QuizManager : MonoBehaviour
             QATemp.ShuffleAnswers.Shuffle();
             for (int i = 0; i < QATemp.Ansers.Count; i++)
             {
-                QATemp.Ansers[i].text = i + 1 +"." + questionAnser.Ansers[i];
+                QATemp.Ansers[i].GetComponent<TextMeshProUGUI>().text = QATemp.Ansers[i].GetComponent<AnswerButton>().PositionInParent + "." + questionAnser.Ansers[i];
             }
             QATemp.CorrectAnser = questionAnser.CorrectAnswer;
             newQA.SetActive(false);

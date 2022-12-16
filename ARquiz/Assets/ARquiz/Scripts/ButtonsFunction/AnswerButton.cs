@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AnswerButton : ButtonClick
 {
     public int id;
+    public int PositionInParent = 0;
     public override void Click()
     {
         Button.interactable = false;

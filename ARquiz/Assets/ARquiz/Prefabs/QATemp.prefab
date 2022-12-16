@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 8537954033187354447}
   id: 2
+  PositionInParent: 0
 --- !u!1 &8537954033374764897
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 8537954033374764899}
   id: 1
+  PositionInParent: 0
 --- !u!1 &8537954033768443980
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 8537954033768443982}
   id: 0
+  PositionInParent: 0
 --- !u!1 &8537954034188464796
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: []
+  PositionInParent: 0
 --- !u!1 &8537954034390346060
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,10 +773,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Questions: {fileID: 8327923744039821253}
   Ansers:
-  - {fileID: 8537954033768443983}
-  - {fileID: 8537954033374764900}
-  - {fileID: 8537954033187354432}
-  - {fileID: 8537954034968711575}
+  - {fileID: 8537954033768443980}
+  - {fileID: 8537954033374764897}
+  - {fileID: 8537954033187354445}
+  - {fileID: 8537954034968711572}
   CorrectAnser: 0
   ShuffleAnswers: {fileID: 2957701398116866675}
 --- !u!1 &8537954034791625198
@@ -1120,6 +1124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 8537954034968711574}
   id: 3
+  PositionInParent: 0
 --- !u!1 &8973139812040836164
 GameObject:
   m_ObjectHideFlags: 0
