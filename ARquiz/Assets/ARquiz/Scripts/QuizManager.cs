@@ -17,7 +17,8 @@ public class QuizManager : MonoBehaviour
     public GameObject QAPrefab;
     public List<GameObject> Questions;
     public QATemp CurrentActiveTemp;
-    public int CorrectAnswered;
+    public int CorrectAnswered = 0;
+    [SerializeField]
     private int CurrentActiveIndex = 0;
 
     private void Awake()
@@ -40,7 +41,7 @@ public class QuizManager : MonoBehaviour
             {
                 QATemp.Ansers[i].text = i+1 + "." + questionAnser.Ansers[i];
             }
-            QATemp.CorrectAnser = questionAnser.CorrectAnser;
+            QATemp.CorrectAnser = questionAnser.CorrectAnswer;
             newQA.SetActive(false);
         }
 
@@ -62,8 +63,12 @@ public class QuizManager : MonoBehaviour
         {
             Debug.Log("Summary Screen" + "tocan broj odgovora" + CorrectAnswered );
             //otvori summary Screen
+            CorrectAnswered = 0;
+            CurrentActiveIndex = 0;
+            return;
         }
         CurrentActiveIndex++;
+        CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
         Questions[CurrentActiveIndex].SetActive(true);
     }
 }

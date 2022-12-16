@@ -13,6 +13,6 @@ public class QuestionAnserSO : ScriptableObject
 
     public List<string> Ansers;
 
-    public int CorrectAnser;
+    public int CorrectAnswer;
 
 }
