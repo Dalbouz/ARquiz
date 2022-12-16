@@ -180,7 +180,6 @@ MonoBehaviour:
   SettingsPanel: {fileID: 1139802318}
   ButtonsToEnable_Disable:
   - {fileID: 1270767494}
-  - {fileID: 34652307}
 --- !u!114 &34652307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -930,7 +929,7 @@ PrefabInstance:
     - target: {fileID: 4945441791705499243, guid: a52de38e47ef887499bce06c142261f8,
         type: 3}
       propertyPath: ButtonsToEnable_Disable.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4945441791705499243, guid: a52de38e47ef887499bce06c142261f8,
         type: 3}
