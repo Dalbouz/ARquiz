@@ -20,6 +20,8 @@ public class QuizManager : MonoBehaviour
     public QuestionAnserHolderSO QAContainer;
     public GameObject QAPrefab;
     public QATemp CurrentActiveTemp;
+    [SerializeField]
+    private GameObject QATemp;
     public int CorrectAnswered = 0;
     [SerializeField]
     private int CurrentActiveIndex = 0;
@@ -28,7 +30,7 @@ public class QuizManager : MonoBehaviour
     private int _waitBeforeLoadMM;
     [SerializeField]
     private List<Button> ButtonsToDisable;
-
+    private AnswerButton AnswerButtonTemp;
     private struct Question
     { 
         public string questionCro;
@@ -44,28 +46,23 @@ public class QuizManager : MonoBehaviour
         }
     }
     private List<Question> QuestionContents;
-    private GameObject QATemp;
     private void Awake()
     {
         if (_instance == null)
             _instance = this;
+       
     }
     private void Start()
     {
         /*NEW*/
         CreateQuestionsAndAnswers();
-        AddQuestionToTemp();
-
         /*OLD*/
         //CreateQuestionsandAnswers();
     }
-    /*NEW*/
+
     private void CreateQuestionsAndAnswers()
     {
         QuestionContents = new List<Question>();
-        QATemp = Instantiate(QAPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        QATemp.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
-        CurrentActiveTemp = QATemp.GetComponent<QATemp>();
         Question tempContent = new Question();
         foreach (QuestionAnserSO questionAnser in QAContainer.QuestionAnserContainer)
         {
@@ -80,6 +77,7 @@ public class QuizManager : MonoBehaviour
             QuestionContents[i] = QuestionContents[RandomIndex];
             QuestionContents[RandomIndex] = QTemp;
         }
+        AddQuestionToTemp();
     }
 
     /*NEW*/
@@ -87,8 +85,8 @@ public class QuizManager : MonoBehaviour
     {
         CurrentActiveTemp.Questions.Croatian = QuestionContents[CurrentActiveIndex].questionCro;
         CurrentActiveTemp.Questions.English = QuestionContents[CurrentActiveIndex].questionEng;
+        CurrentActiveTemp.Questions.SetText();
         CurrentActiveTemp.CorrectAnser = QuestionContents[CurrentActiveIndex].correctAnswer;
-        AnswerButton AnswerButtonTemp;
         CurrentActiveTemp.ShuffleAnswers.Shuffle();
         for (int i = 0; i < CurrentActiveTemp.Ansers.Count; i++)
         {
@@ -121,7 +119,7 @@ public class QuizManager : MonoBehaviour
         SceneManager.LoadScene("Glavni Meni");
     }
 
-    /*OLD*/
+    /*OLD - remove QATemp prefab form Hierarchy*/
     //private void CreateQuestionsandAnswers()
     //{
     //    Questions = new List<GameObject>();
@@ -152,7 +150,7 @@ public class QuizManager : MonoBehaviour
     //    Questions[CurrentActiveIndex].SetActive(true);
     //    CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
     //}
-    /*OLD*/
+    ///*OLD*/
     //public void NextQuestion()
     //{
     //    Questions[CurrentActiveIndex].SetActive(false);

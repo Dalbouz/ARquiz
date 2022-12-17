@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreTxt : LanguageChange
 {
-    public override void OnLanguageChange()
+    public override void SetText()
     {
         if (UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.CROATIAN)
         {

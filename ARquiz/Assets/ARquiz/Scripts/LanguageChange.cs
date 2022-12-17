@@ -17,15 +17,15 @@ public abstract class LanguageChange : MonoBehaviour
     }
     private void Start()
     {
-        UIManager.Instance.onLanguageChange += OnLanguageChange;
-        OnLanguageChange();
+        UIManager.Instance.onLanguageChange += SetText;
+        SetText();
     }
 
     private void OnDestroy()
     {
-        UIManager.Instance.onLanguageChange -= OnLanguageChange;
+        UIManager.Instance.onLanguageChange -= SetText;
     }
-    public virtual void OnLanguageChange()
+    public virtual void SetText()
     {
         if(UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.CROATIAN)
         {
