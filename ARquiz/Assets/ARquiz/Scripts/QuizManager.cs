@@ -16,9 +16,9 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    //public List<GameObject> Questions;//For old Instantiation
     public QuestionAnserHolderSO QAContainer;
     public GameObject QAPrefab;
-    public List<GameObject> Questions;
     public QATemp CurrentActiveTemp;
     public int CorrectAnswered = 0;
     [SerializeField]
@@ -29,6 +29,22 @@ public class QuizManager : MonoBehaviour
     [SerializeField]
     private List<Button> ButtonsToDisable;
 
+    private struct Question
+    { 
+        public string questionCro;
+        public string questionEng;
+        public List<string> answers;
+        public int correctAnswer;
+        public void GetValues(string p1, string p2, List<string>p3, int p4)
+        {
+            questionCro = p1;
+            questionEng = p2;
+            answers = p3;
+            correctAnswer = p4;
+        }
+    }
+    private List<Question> QuestionContents;
+    private GameObject QATemp;
     private void Awake()
     {
         if (_instance == null)
@@ -36,52 +52,66 @@ public class QuizManager : MonoBehaviour
     }
     private void Start()
     {
-        Questions = new List<GameObject>();
+        /*NEW*/
+        CreateQuestionsAndAnswers();
+        AddQuestionToTemp();
+
+        /*OLD*/
+        //CreateQuestionsandAnswers();
+    }
+    /*NEW*/
+    private void CreateQuestionsAndAnswers()
+    {
+        QuestionContents = new List<Question>();
+        QATemp = Instantiate(QAPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        QATemp.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
+        CurrentActiveTemp = QATemp.GetComponent<QATemp>();
+        Question tempContent = new Question();
         foreach (QuestionAnserSO questionAnser in QAContainer.QuestionAnserContainer)
         {
-            GameObject newQA = Instantiate(QAPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            Questions.Add(newQA);
-            newQA.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
-            QATemp QATemp = newQA.GetComponent<QATemp>();
-            QATemp.Questions.Croatian = questionAnser.QuestionCro;
-            QATemp.Questions.English = questionAnser.QuestionEng;
-            QATemp.ShuffleAnswers.Shuffle();
-            for (int i = 0; i < QATemp.Ansers.Count; i++)
-            {
-                QATemp.Ansers[i].GetComponent<TextMeshProUGUI>().text = QATemp.Ansers[i].GetComponent<AnswerButton>().PositionInParent + "." + questionAnser.Ansers[i];
-            }
-            QATemp.CorrectAnser = questionAnser.CorrectAnswer;
-            newQA.SetActive(false);
+            tempContent.GetValues(questionAnser.QuestionCro, questionAnser.QuestionEng, questionAnser.Ansers, questionAnser.CorrectAnswer);
+            QuestionContents.Add(tempContent);
         }
-        GameObject temp;
-        for (int i = 0; i < Questions.Count; i++)
+        Question QTemp;
+        for (int i = 0; i < QuestionContents.Count; i++)
         {
-            temp = Questions[i];
-            int RandomIndex = Random.Range(i, Questions.Count);
-            Questions[i] = Questions[RandomIndex];
-            Questions[RandomIndex] = temp;
+            QTemp = QuestionContents[i];
+            int RandomIndex = Random.Range(i, QuestionContents.Count);
+            QuestionContents[i] = QuestionContents[RandomIndex];
+            QuestionContents[RandomIndex] = QTemp;
         }
-        Questions[CurrentActiveIndex].SetActive(true);
-        CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
     }
 
+    /*NEW*/
+    private void AddQuestionToTemp()
+    {
+        CurrentActiveTemp.Questions.Croatian = QuestionContents[CurrentActiveIndex].questionCro;
+        CurrentActiveTemp.Questions.English = QuestionContents[CurrentActiveIndex].questionEng;
+        CurrentActiveTemp.CorrectAnser = QuestionContents[CurrentActiveIndex].correctAnswer;
+        AnswerButton AnswerButtonTemp;
+        CurrentActiveTemp.ShuffleAnswers.Shuffle();
+        for (int i = 0; i < CurrentActiveTemp.Ansers.Count; i++)
+        {
+            AnswerButtonTemp = CurrentActiveTemp.Ansers[i].GetComponent<AnswerButton>();
+            CurrentActiveTemp.Ansers[i].GetComponent<TextMeshProUGUI>().text = AnswerButtonTemp.PositionInParent + "." + QuestionContents[CurrentActiveIndex].answers[i];
+        }
+    }
+    /*NEW*/
     public void NextQuestion()
     {
-        Questions[CurrentActiveIndex].SetActive(false);
-        if(CurrentActiveIndex >= Questions.Count-1)
+        if (CurrentActiveIndex >= QuestionContents.Count - 1)
         {
             foreach (Button button in ButtonsToDisable)
             {
                 button.interactable = false;
             }
+            QATemp.SetActive(false);
             StartCoroutine(WaitAndLoadMM());
             return;
         }
         CurrentActiveIndex++;
-        CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
-        Questions[CurrentActiveIndex].SetActive(true);
+        AddQuestionToTemp();
     }
-
     private IEnumerator WaitAndLoadMM()
     {
         ScoreBoard.SetActive(true);
@@ -90,4 +120,55 @@ public class QuizManager : MonoBehaviour
         CurrentActiveIndex = 0;
         SceneManager.LoadScene("Glavni Meni");
     }
+
+    /*OLD*/
+    //private void CreateQuestionsandAnswers()
+    //{
+    //    Questions = new List<GameObject>();
+    //    foreach (QuestionAnserSO questionAnser in QAContainer.QuestionAnserContainer)
+    //    {
+    //        GameObject newQA = Instantiate(QAPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+    //        Questions.Add(newQA);
+    //        newQA.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
+    //        QATemp QATemp = newQA.GetComponent<QATemp>();
+    //        QATemp.Questions.Croatian = questionAnser.QuestionCro;
+    //        QATemp.Questions.English = questionAnser.QuestionEng;
+    //        QATemp.ShuffleAnswers.Shuffle();
+    //        for (int i = 0; i < QATemp.Ansers.Count; i++)
+    //        {
+    //            QATemp.Ansers[i].GetComponent<TextMeshProUGUI>().text = QATemp.Ansers[i].GetComponent<AnswerButton>().PositionInParent + "." + questionAnser.Ansers[i];
+    //        }
+    //        QATemp.CorrectAnser = questionAnser.CorrectAnswer;
+    //        newQA.SetActive(false);
+    //    }
+    //    GameObject temp;
+    //    for (int i = 0; i < Questions.Count; i++)
+    //    {
+    //        temp = Questions[i];
+    //        int RandomIndex = Random.Range(i, Questions.Count);
+    //        Questions[i] = Questions[RandomIndex];
+    //        Questions[RandomIndex] = temp;
+    //    }
+    //    Questions[CurrentActiveIndex].SetActive(true);
+    //    CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
+    //}
+    /*OLD*/
+    //public void NextQuestion()
+    //{
+    //    Questions[CurrentActiveIndex].SetActive(false);
+    //    if (CurrentActiveIndex >= Questions.Count - 1)
+    //    {
+    //        foreach (Button button in ButtonsToDisable)
+    //        {
+    //            button.interactable = false;
+    //        }
+    //        StartCoroutine(WaitAndLoadMM());
+    //        return;
+    //    }
+    //    CurrentActiveIndex++;
+    //    CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
+    //    Questions[CurrentActiveIndex].SetActive(true);
+    //}
 }
+
+
