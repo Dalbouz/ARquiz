@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1155745470496283111}
   m_Layer: 0
   m_Name: Balloon_Ghost_Red
-  m_TagString: Untagged
+  m_TagString: ARObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,6 +156,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8681077432002171623, guid: 5e10cb482ddf4e1448aba29c794128e2,
         type: 3}
+      propertyPath: m_TagString
+      value: ARObject
+      objectReference: {fileID: 0}
+    - target: {fileID: -8681077432002171623, guid: 5e10cb482ddf4e1448aba29c794128e2,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -221,13 +226,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7895393657115491998, guid: 5e10cb482ddf4e1448aba29c794128e2,
         type: 3}
+      propertyPath: m_TagString
+      value: ARObject
+      objectReference: {fileID: 0}
+    - target: {fileID: -7895393657115491998, guid: 5e10cb482ddf4e1448aba29c794128e2,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7272911518199237601, guid: 5e10cb482ddf4e1448aba29c794128e2,
         type: 3}
+      propertyPath: m_TagString
+      value: ARObject
+      objectReference: {fileID: 0}
+    - target: {fileID: -7272911518199237601, guid: 5e10cb482ddf4e1448aba29c794128e2,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2643672560054497763, guid: 5e10cb482ddf4e1448aba29c794128e2,
+        type: 3}
+      propertyPath: m_TagString
+      value: ARObject
       objectReference: {fileID: 0}
     - target: {fileID: -2643672560054497763, guid: 5e10cb482ddf4e1448aba29c794128e2,
         type: 3}
@@ -238,6 +258,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Baloon_Ghost_v2 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e10cb482ddf4e1448aba29c794128e2,
+        type: 3}
+      propertyPath: m_TagString
+      value: ARObject
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5e10cb482ddf4e1448aba29c794128e2,
         type: 3}

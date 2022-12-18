@@ -17,9 +17,11 @@ public class ARCursor : MonoBehaviour
     public GameObject cursorChildObject;
     public ARRaycastManager raycastManager;
     public int ObjectToPlaceID = 0;
-
+    [SerializeField]
+    private GameObject _settingsPanel;
     public bool useCursor = true;
     public int PickAnObjMsgDelay = 1;
+    private AudioSource _audioSource;
     public List<GameObject> objectToPlace;
     
 
@@ -31,6 +33,7 @@ public class ARCursor : MonoBehaviour
     }
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         cursorChildObject.SetActive(useCursor);
     }
 
@@ -41,14 +44,28 @@ public class ARCursor : MonoBehaviour
             UpdateCursor();
         }
 
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             if (useCursor)
             {
-                GameObject.Instantiate(objectToPlace[ObjectToPlaceID], transform.position,Quaternion.identity);
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                RaycastHit hit;
+                if (!_settingsPanel.activeSelf)
+                {
+                    if(Physics.Raycast(ray, out hit))
+                    {
+                        if(hit.transform.gameObject.tag == "ARObject")
+                        {
+                            _audioSource.Play();
+                        }
+                        else
+                        {
+                            GameObject.Instantiate(objectToPlace[ObjectToPlaceID], transform.position,Quaternion.identity);
+                        }
+                    }
+                }
             }
         }
-
     }
     void UpdateCursor()
     {
