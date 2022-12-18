@@ -5,12 +5,30 @@ using UnityEngine.XR.ARFoundation;
 
 public class ARCursor : MonoBehaviour
 {
+    private static ARCursor _instance;
+    public static ARCursor Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+
     public GameObject cursorChildObject;
-    public GameObject objectToPlace;
     public ARRaycastManager raycastManager;
+    public int ObjectToPlaceID = 0;
 
     public bool useCursor = true;
+    public int PickAnObjMsgDelay = 1;
+    public List<GameObject> objectToPlace;
+    
 
+
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+    }
     private void Start()
     {
         cursorChildObject.SetActive(useCursor);
@@ -27,9 +45,10 @@ public class ARCursor : MonoBehaviour
         {
             if (useCursor)
             {
-                GameObject.Instantiate(objectToPlace, transform.position, transform.rotation);
+                GameObject.Instantiate(objectToPlace[ObjectToPlaceID], transform.position, transform.rotation);
             }
         }
+
     }
     void UpdateCursor()
     {
@@ -43,4 +62,5 @@ public class ARCursor : MonoBehaviour
             transform.rotation = hits[0].pose.rotation;
         }
     }
+
 }
