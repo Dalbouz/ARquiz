@@ -43,8 +43,11 @@ public class ARCursor : MonoBehaviour
         {
             UpdateCursor();
         }
-
-        if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        CreateOrInteractObject();
+    }
+    private void CreateOrInteractObject()
+    {
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             if (useCursor)
             {
@@ -52,21 +55,22 @@ public class ARCursor : MonoBehaviour
                 RaycastHit hit;
                 if (!_settingsPanel.activeSelf)
                 {
-                    if(Physics.Raycast(ray, out hit))
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        if(hit.transform.gameObject.tag == "ARObject")
+                        if (hit.transform.gameObject.tag == "ARObject")
                         {
                             _audioSource.Play();
                         }
                         else
                         {
-                            GameObject.Instantiate(objectToPlace[ObjectToPlaceID], transform.position,Quaternion.identity);
+                            GameObject.Instantiate(objectToPlace[ObjectToPlaceID], transform.position, Quaternion.identity);
                         }
                     }
                 }
             }
         }
     }
+
     void UpdateCursor()
     {
         Vector2 screenPosition = Camera.main.ViewportToScreenPoint(new Vector2(0.5f, 0.5f));
