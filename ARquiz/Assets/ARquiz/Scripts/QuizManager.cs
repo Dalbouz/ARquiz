@@ -15,10 +15,7 @@ public class QuizManager : MonoBehaviour
             return _instance;
         }
     }
-
-    //public List<GameObject> Questions;//For old Instantiation
     public QuestionAnserHolderSO QAContainer;
-    public GameObject QAPrefab;
     public QATemp CurrentActiveTemp;
     [SerializeField]
     private GameObject QATemp;
@@ -31,73 +28,43 @@ public class QuizManager : MonoBehaviour
     [SerializeField]
     private List<Button> ButtonsToDisable;
     private AnswerButton AnswerButtonTemp;
-    private struct Question
-    { 
-        public string questionCro;
-        public string questionEng;
-        public List<string> answers;
-        public int correctAnswer;
-        public void GetValues(string p1, string p2, List<string>p3, int p4)
-        {
-            questionCro = p1;
-            questionEng = p2;
-            answers = p3;
-            correctAnswer = p4;
-        }
-    }
-    private List<Question> QuestionContents;
     private void Awake()
     {
         if (_instance == null)
             _instance = this;
-       
     }
     private void Start()
     {
-        /*NEW*/
-        CreateQuestionsAndAnswers();
-        /*OLD*/
-        //CreateQuestionsandAnswers();
+        ShuffleQuestions();
     }
-
-    private void CreateQuestionsAndAnswers()
+    private void ShuffleQuestions()
     {
-        QuestionContents = new List<Question>();
-        Question tempContent = new Question();
-        foreach (QuestionAnserSO questionAnser in QAContainer.QuestionAnserContainer)
+        QuestionAnserSO QTemp;
+        for (int i = 0; i < QAContainer.QuestionAnserContainer.Count; i++)
         {
-            tempContent.GetValues(questionAnser.QuestionCro, questionAnser.QuestionEng, questionAnser.Ansers, questionAnser.CorrectAnswer);
-            QuestionContents.Add(tempContent);
+            QTemp = QAContainer.QuestionAnserContainer[i];
+            int RandomIndex = Random.Range(i, QAContainer.QuestionAnserContainer.Count);
+            QAContainer.QuestionAnserContainer[i] = QAContainer.QuestionAnserContainer[RandomIndex];
+            QAContainer.QuestionAnserContainer[RandomIndex] = QTemp;
         }
-        Question QTemp;
-        for (int i = 0; i < QuestionContents.Count; i++)
-        {
-            QTemp = QuestionContents[i];
-            int RandomIndex = Random.Range(i, QuestionContents.Count);
-            QuestionContents[i] = QuestionContents[RandomIndex];
-            QuestionContents[RandomIndex] = QTemp;
-        }
-        AddQuestionToTemp();
+        ChangeQuestion();
     }
-
-    /*NEW*/
-    private void AddQuestionToTemp()
+    private void ChangeQuestion()
     {
-        CurrentActiveTemp.Questions.Croatian = QuestionContents[CurrentActiveIndex].questionCro;
-        CurrentActiveTemp.Questions.English = QuestionContents[CurrentActiveIndex].questionEng;
+        CurrentActiveTemp.Questions.Croatian = QAContainer.QuestionAnserContainer[CurrentActiveIndex].QuestionCro;
+        CurrentActiveTemp.Questions.English = QAContainer.QuestionAnserContainer[CurrentActiveIndex].QuestionEng;
         CurrentActiveTemp.Questions.SetText();
-        CurrentActiveTemp.CorrectAnser = QuestionContents[CurrentActiveIndex].correctAnswer;
+        CurrentActiveTemp.CorrectAnser = QAContainer.QuestionAnserContainer[CurrentActiveIndex].CorrectAnswer;
         CurrentActiveTemp.ShuffleAnswers.Shuffle();
         for (int i = 0; i < CurrentActiveTemp.Ansers.Count; i++)
         {
             AnswerButtonTemp = CurrentActiveTemp.Ansers[i].GetComponent<AnswerButton>();
-            CurrentActiveTemp.Ansers[i].GetComponent<TextMeshProUGUI>().text = AnswerButtonTemp.PositionInParent + "." + QuestionContents[CurrentActiveIndex].answers[i];
+            CurrentActiveTemp.Ansers[i].GetComponent<TextMeshProUGUI>().text = AnswerButtonTemp.PositionInParent + "." + QAContainer.QuestionAnserContainer[CurrentActiveIndex].Ansers[i];
         }
     }
-    /*NEW*/
     public void NextQuestion()
     {
-        if (CurrentActiveIndex >= QuestionContents.Count - 1)
+        if (CurrentActiveIndex >= QAContainer.QuestionAnserContainer.Count - 1)
         {
             foreach (Button button in ButtonsToDisable)
             {
@@ -108,7 +75,7 @@ public class QuizManager : MonoBehaviour
             return;
         }
         CurrentActiveIndex++;
-        AddQuestionToTemp();
+        ChangeQuestion();
     }
     private IEnumerator WaitAndLoadMM()
     {
@@ -118,55 +85,6 @@ public class QuizManager : MonoBehaviour
         CurrentActiveIndex = 0;
         SceneManager.LoadScene("Glavni Meni");
     }
-
-    /*OLD - remove QATemp prefab form Hierarchy*/
-    //private void CreateQuestionsandAnswers()
-    //{
-    //    Questions = new List<GameObject>();
-    //    foreach (QuestionAnserSO questionAnser in QAContainer.QuestionAnserContainer)
-    //    {
-    //        GameObject newQA = Instantiate(QAPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-    //        Questions.Add(newQA);
-    //        newQA.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
-    //        QATemp QATemp = newQA.GetComponent<QATemp>();
-    //        QATemp.Questions.Croatian = questionAnser.QuestionCro;
-    //        QATemp.Questions.English = questionAnser.QuestionEng;
-    //        QATemp.ShuffleAnswers.Shuffle();
-    //        for (int i = 0; i < QATemp.Ansers.Count; i++)
-    //        {
-    //            QATemp.Ansers[i].GetComponent<TextMeshProUGUI>().text = QATemp.Ansers[i].GetComponent<AnswerButton>().PositionInParent + "." + questionAnser.Ansers[i];
-    //        }
-    //        QATemp.CorrectAnser = questionAnser.CorrectAnswer;
-    //        newQA.SetActive(false);
-    //    }
-    //    GameObject temp;
-    //    for (int i = 0; i < Questions.Count; i++)
-    //    {
-    //        temp = Questions[i];
-    //        int RandomIndex = Random.Range(i, Questions.Count);
-    //        Questions[i] = Questions[RandomIndex];
-    //        Questions[RandomIndex] = temp;
-    //    }
-    //    Questions[CurrentActiveIndex].SetActive(true);
-    //    CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
-    //}
-    ///*OLD*/
-    //public void NextQuestion()
-    //{
-    //    Questions[CurrentActiveIndex].SetActive(false);
-    //    if (CurrentActiveIndex >= Questions.Count - 1)
-    //    {
-    //        foreach (Button button in ButtonsToDisable)
-    //        {
-    //            button.interactable = false;
-    //        }
-    //        StartCoroutine(WaitAndLoadMM());
-    //        return;
-    //    }
-    //    CurrentActiveIndex++;
-    //    CurrentActiveTemp = Questions[CurrentActiveIndex].GetComponent<QATemp>();
-    //    Questions[CurrentActiveIndex].SetActive(true);
-    //}
 }
 
 
