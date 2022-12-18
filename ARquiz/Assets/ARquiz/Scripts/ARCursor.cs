@@ -45,7 +45,7 @@ public class ARCursor : MonoBehaviour
         {
             if (useCursor)
             {
-                GameObject.Instantiate(objectToPlace[ObjectToPlaceID], transform.position, transform.rotation);
+                GameObject.Instantiate(objectToPlace[ObjectToPlaceID], transform.position,Quaternion.identity);
             }
         }
 
@@ -62,5 +62,4 @@ public class ARCursor : MonoBehaviour
             transform.rotation = hits[0].pose.rotation;
         }
     }
-
 }
