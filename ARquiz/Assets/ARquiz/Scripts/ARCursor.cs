@@ -34,6 +34,7 @@ public class ARCursor : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        CurrentSpawn = null;
     }
 
     private void Update()
