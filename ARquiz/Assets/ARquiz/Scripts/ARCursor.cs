@@ -13,14 +13,14 @@ public class ARCursor : MonoBehaviour
             return _instance;
         }
     }
-
+    
     public GameObject cursorChildObject;
     public ARRaycastManager raycastManager;
-    public int ObjectToPlaceID = 0;
+    public GameObject CurrentSpawn;
+    private int CurrentActiveID = 0;
+    private int NewSelectedID = 0;
     [SerializeField]
     private GameObject _settingsPanel;
-    public bool useCursor = true;
-    public int PickAnObjMsgDelay = 1;
     private AudioSource _audioSource;
     public List<GameObject> objectToPlace;
     
@@ -34,41 +34,58 @@ public class ARCursor : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        cursorChildObject.SetActive(useCursor);
     }
 
     private void Update()
     {
-        if (useCursor)
-        {
-            UpdateCursor();
-        }
-        CreateOrInteractObject();
+        UpdateCursor();
+        CreateObject();
     }
-    private void CreateOrInteractObject()
+    private void CreateObject()
     {
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
-            if (useCursor)
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+            if (!_settingsPanel.activeSelf)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-                RaycastHit hit;
-                if (!_settingsPanel.activeSelf)
+                if(CurrentSpawn != null)
                 {
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if (hit.transform.gameObject.tag == "ARObject")
+                        if (hit.transform.gameObject.tag == StringConst.GameObjectTag)
                         {
-                            _audioSource.Play();
+                            Playsound();
                         }
                         else
                         {
-                            GameObject.Instantiate(objectToPlace[ObjectToPlaceID], transform.position, Quaternion.identity);
+                            if (CurrentActiveID == NewSelectedID)
+                                return;
+                            else
+                            {
+                                Destroy(CurrentSpawn.gameObject);
+                                InitCurrentSpawn();
+                                CurrentActiveID = NewSelectedID;
+                            }
                         }
                     }
                 }
+                else
+                {
+                    InitCurrentSpawn();
+                }
             }
         }
+    }
+
+    private void InitCurrentSpawn()
+    {
+        CurrentSpawn = GameObject.Instantiate(objectToPlace[NewSelectedID], transform.position, Quaternion.identity);
+    }
+
+    private void Playsound()
+    {
+        _audioSource.Play();
     }
 
     void UpdateCursor()
@@ -82,5 +99,10 @@ public class ARCursor : MonoBehaviour
             transform.position = hits[0].pose.position;
             transform.rotation = hits[0].pose.rotation;
         }
+    }
+
+    public void SetObjectID(int NewID)
+    {
+        NewSelectedID = NewID;
     }
 }

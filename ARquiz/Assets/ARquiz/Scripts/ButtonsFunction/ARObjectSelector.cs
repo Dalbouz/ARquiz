@@ -10,7 +10,7 @@ public class ARObjectSelector : ButtonClick
     public Sprite DeselectedImage;
     public override void Click()
     {
-        ARCursor.Instance.ObjectToPlaceID = Id;
+        ARCursor.Instance.SetObjectID(Id);
         this.Button.image.sprite = SelectedImg;
         CurrActiveObjManager.Instance.ButtonChange(DeselectedImage, this.Button);
     }
