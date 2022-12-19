@@ -7,7 +7,7 @@ public class BackToMainMenu : ButtonClick
 {
     public override void Click()
     {
-        SceneManager.LoadScene("Glavni Meni");
+        SceneManager.LoadScene(StringConst.MainMenuTxt);
         Button.interactable = false;
     }
 }

@@ -6,6 +6,6 @@ public class InfoButton : ButtonClick
 {
     public override void Click()
     {
-        SceneManager.LoadScene("Info");
+        SceneManager.LoadScene(StringConst.InfoScreenTxt);
     }
 }

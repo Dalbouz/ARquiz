@@ -9,8 +9,6 @@ public class AnswerButton : ButtonClick
     public int PositionInParent = 0;
     public override void Click()
     {
-        /*OLD*/
-        //Button.interactable = false;
         if (QuizManager.Instance.CurrentActiveTemp.CorrectAnser == id)
         {
             QuizManager.Instance.CorrectAnswered++;

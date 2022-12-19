@@ -83,7 +83,7 @@ public class QuizManager : MonoBehaviour
         yield return new WaitForSeconds(_waitBeforeLoadMM);
         CorrectAnswered = 0;
         CurrentActiveIndex = 0;
-        SceneManager.LoadScene("Glavni Meni");
+        SceneManager.LoadScene(StringConst.MainMenuTxt);
     }
 }
 

@@ -13,7 +13,7 @@ public abstract class LanguageChange : MonoBehaviour
     private void Awake()
     {
         _tmpText = GetComponent<TextMeshProUGUI>();
-    
+
     }
     private void Start()
     {
@@ -27,11 +27,11 @@ public abstract class LanguageChange : MonoBehaviour
     }
     public virtual void SetText()
     {
-        if(UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.CROATIAN)
+        if (UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.CROATIAN)
         {
             _tmpText.text = Croatian;
         }
-        else if(UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.ENGLISH)
+        else if (UIManager.Instance.chosenLanguage == UIManager.ChosenLanguage.ENGLISH)
         {
             _tmpText.text = English;
         }

@@ -7,6 +7,6 @@ public class ARButton : ButtonClick
 {
     public override void Click()
     {
-        SceneManager.LoadScene("AR");
+        SceneManager.LoadScene(StringConst.ARScreenTxt);
     }
 }

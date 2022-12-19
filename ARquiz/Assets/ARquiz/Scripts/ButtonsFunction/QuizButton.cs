@@ -6,6 +6,6 @@ public class QuizButton : ButtonClick
 {
     public override void Click()
     {
-        SceneManager.LoadScene("Kviz");
+        SceneManager.LoadScene(StringConst.QuizScreenTxt);
     }
 }
