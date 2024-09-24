@@ -2,7 +2,7 @@
 
 <i>Description:</i> There are two types of games withing this app. The first one is the Quiz, where the questions and the order are randonly set every time, And the other is the AR mode where you can spawn an object in AR, rotate and scale it, click on it.
 <br></br>
-Link of the full app: 
+Link of the full app: https://drive.google.com/file/d/1rDnpj_yDaDutZqYBe-1oryVbmKE5xirf/view?usp=drive_link
 <br></br>
 <div align="center">
 <img src="https://github.com/user-attachments/assets/c6d76194-aaf3-4936-9272-7a0cbcdfd410" height="700px">
